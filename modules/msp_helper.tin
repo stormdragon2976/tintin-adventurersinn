@@ -1,3 +1,15 @@
+#action {^You cannot go that direction.}
+{
+play bump
+}
+{9}
+
+#action {^A vision of %S plays across your mind.}
+{
+play need_to_worship
+}
+{9}
+
 #action {^Rain starts to fall from the dark clouds overhead.}
 {
 play rain

@@ -1,0 +1,8 @@
+#action {^You are too alert to try and sleep right now.}
+{
+#gag %0;
+relax;
+sleep
+}
+{9}
+
