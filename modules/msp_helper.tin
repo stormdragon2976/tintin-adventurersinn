@@ -1,3 +1,9 @@
+#action {^You hear something inside you whisper%*}
+{
+play need_to_worship
+}
+{9}
+
 #action {^You cannot go that direction.}
 {
 play bump
