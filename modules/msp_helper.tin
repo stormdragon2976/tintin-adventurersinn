@@ -1,0 +1,47 @@
+#action {^Rain starts to fall from the dark clouds overhead.}
+{
+play rain
+}
+{9}
+
+#action {^The blood of %1 spills on the ground.}
+{
+play blood_spray
+}
+{9}
+
+#action {%1 splatters blood on you.}
+{
+play blood_spray
+}
+{9}
+
+#action {^The body of %1 falls to the ground, dead.}
+{
+play death-fall
+}
+{9}
+
+#action {%1 falls to the ground.}
+{
+play death-fall
+}
+{9}
+
+#action {^You hear a blood filled death cry from %1.}
+{
+play mdeath
+}
+{9}
+
+#action {%1 falls on its knees, then falls forward- dead.$}
+{
+play death-fall
+}
+{9}
+
+#action {%1 hits the ground ... DEAD.$}
+{
+play death-fall
+}
+{9}

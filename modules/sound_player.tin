@@ -1,0 +1,65 @@
+#ACTION {^!!SOUND(%1.wav U=%S)}
+{
+	#script {if ! [ -f "sounds/%1.ogg" ] ; then sox -qV0 %2%1.wav "sounds/%1.ogg";fi};
+	play %1
+}
+{9}
+
+#ALIAS {^synth_play %1}
+{
+	#system {play -qV0 %1 gain $volume&}
+}
+{9}
+
+#ALIAS {pan_play %S}
+{
+#if {!&{leftChannel} || "$leftChannel" == ""}
+{
+#math {leftChannel} {1d4 + 1}
+};
+#if {!&{rightChannel} || "$rightChannel" == ""}
+{
+#math {rightChannel} {1d4 + 1}
+};
+#system {play -qV0 "$(shuf -n 1 -e sounds/%1*ogg)" remix v0.$leftChannel v0.$rightChannel gain $volume &> /dev/null &}
+#unvariable {leftChannel};
+#unvariable {rightChannel}
+}
+{9}
+
+#ALIAS {play %S}
+{
+	#system {play -qV0 "$(shuf -n 1 -e sounds/%1*ogg)" gain $volume &> /dev/null &}
+}
+{9}
+
+#MACRO {\e[18~}
+{
+	#if {$volume <= -40}
+	{
+		#variable {volume} {-40}
+	};
+	#else
+	{
+		#math {volume} {$volume - 2}
+	};
+	synth_play $newVolumeSound
+}
+
+#MACRO {\e[19~}
+{
+	#if {$volume >= 0}
+	{
+		#variable {volume} {0}
+	};
+	#else
+	{
+		#math {volume} {$volume + 2}
+	};
+	synth_play $newVolumeSound
+}
+
+#SUBSTITUTE       {^!!%1)}  {}  {5}
+#VARIABLE         {leftChannel}  {}
+#VARIABLE         {rightChannel}  {}
+#VARIABLE         {volume}  {0}

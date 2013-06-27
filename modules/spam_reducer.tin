@@ -1,0 +1,2 @@
+#substitute {^You hear a blood filled death cry from %1's.} {You hear a blood filled death cry from %1.}
+#substitute {^Its starts to thunder heavily, as the rain increases.} {It starts to thunder heavily, as the rain increases.}

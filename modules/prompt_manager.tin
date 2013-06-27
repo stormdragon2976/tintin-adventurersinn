@@ -1,0 +1,100 @@
+#ACTION {^< Hp: %S  Ftg: %2 >}
+{
+#if {"$oldCondition" != "%0"}
+{
+#echo {%0};
+#variable {oldCondition} {%0};
+#if {"$oldHp" != "%1"}
+{
+#variable {oldHp} {%1};
+#if {"%1" == "Good"}
+{
+synth_play $hpGood
+};
+#elseif {"%1" == "Injured"}
+{
+synth_play $hpInjured
+};
+#elseif {"%1" == "Hurting"}
+{
+synth_play $hpHurting
+};
+#elseif {"%1" == "Gashes"}
+{
+synth_play $hpGashes
+};
+#elseif {"%1" == "Serious"}
+{
+synth_play $hpSerious
+};
+#elseif {"%1" == "Severe"}
+{
+synth_play $hpSevere
+}
+}
+};
+	#variable {currentHitpoints} {%1};
+	#variable {currentMove} {%2};
+}
+{8}
+
+#ACTION {%1 condition:  %2{.|!}$}
+{
+#if {"%2" == "Excellent fighting condition."}
+	{
+		#variable {enemyConditionTone} {600}
+	};
+#elseif {"%2" == "Slighty bruised."}
+	{
+		#variable {enemyConditionTone} {575}
+	};
+	#elseif {"%2" == "Has some open cuts and bruises."}
+	{
+		#variable {enemyConditionTone} {550}
+	};
+	#elseif {"%2" == "Scratched and bruised."}
+	{
+		#variable {enemyConditionTone} {500}
+	};
+	#elseif {"%2" == "Has quite a few battle wounds."}
+	{
+		#variable {enemyConditionTone} {450}
+	};
+	#elseif {"%2" == "Looks Pretty Bad!"}
+	{
+		#variable {enemyConditionTone} {400}
+	};
+	#elseif {"%2" == "Awful condition."}
+	{
+		#variable {enemyConditionTone} {350}
+	};
+	#elseif {"%2" == "Bleeding ALL Over!"}
+	{
+		#variable {enemyConditionTone} {300}
+	};
+	#elseif {"%2" == "Bleeding to Death!"}
+	{
+		#variable {enemyConditionTone} {250}
+	};
+	#else
+	{
+		#variable {enemyConditionTone} {200}
+	};
+	#system {play -q -V0 -n synth 0.06 tri $enemyConditionTone fade 0.01 0.06 gain $volume &> /dev/null &};
+}
+{9}
+
+#ALIAS {^hp$}
+{
+	#showme {Health: $currentHitpoints.}
+}
+{9}
+
+#ALIAS {^mv$}
+{
+	#showme {Energy: $currentMove.}
+}
+{9}
+#gag {^< Hp: %S  Ftg: %2 >}
+#variable {oldCondition}
+#variable {oldHp} {}

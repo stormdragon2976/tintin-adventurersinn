@@ -1,0 +1,35 @@
+#ACTION {^Alas, you cannot go that way.$}
+{
+	#system {play -qnV0 synth 0.5 tri 400:300 tri 700:500 remix - fade 0 0.2 0.5&}
+}
+{9}
+
+#MACRO {\e,}
+{
+	south
+}
+
+#MACRO {\e<}
+{
+	down
+}
+
+#MACRO {\eI}
+{
+	up
+}
+
+#MACRO {\ei}
+{
+	north
+}
+
+#MACRO {\ej}
+{
+	west
+}
+
+#MACRO {\el}
+{
+	east
+}
