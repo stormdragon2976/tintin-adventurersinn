@@ -1,4 +1,16 @@
-#action {^You hear something inside you whisper%*}
+#action {^The shadows grow long as the night begins to surround you.}
+{
+play night_ambiance
+}
+{9}
+
+#action {^You start to hear deep rumbling, as lightning flashes in the sky.}
+{
+play	thunder
+}
+{9}
+
+#action {^You hear something inside you {say|whisper}%*}
 {
 play need_to_worship
 }
@@ -52,7 +64,7 @@ play mdeath
 }
 {9}
 
-#action {%1 falls on its knees, then falls forward- dead.$}
+#action {%1 falls on {her|his|its} knees, then falls forward- dead.$}
 {
 play death-fall
 }
