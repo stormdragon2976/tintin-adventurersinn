@@ -1,35 +1,41 @@
-#ACTION {^Alas, you cannot go that way.$}
+#action {^The %1 {are|is} closed.}
 {
-	#system {play -qnV0 synth 0.5 tri 400:300 tri 700:500 remix - fade 0 0.2 0.5&}
+open $lastDirection
 }
 {9}
 
 #MACRO {\e,}
 {
-	south
+	#variable {lastDirection} {south};
+	#script {shuf -n 1 -e s sou sout south}
 }
 
-#MACRO {\e<}
+#MACRO {\em}
 {
-	down
+	#variable {lastDirection} {down};
+	#script {shuf -n 1 -e d do dow down}
 }
 
-#MACRO {\eI}
+#MACRO {\eu}
 {
-	up
+	#variable {lastDirection} {up};
+	#script {shuf -n 1 -e u up}
 }
 
 #MACRO {\ei}
 {
-	north
+	#variable {lastDirection} {north};
+	#script {shuf -n 1 -e n no nor nort north}
 }
 
 #MACRO {\ej}
 {
-	west
+	#variable {lastDirection} {west};
+	#script {shuf -n 1 -e w we wes west}
 }
 
 #MACRO {\el}
 {
-	east
+	#variable {lastDirection} {east};
+	#script {shuf -n 1 -e e ea eas east}
 }

@@ -1,3 +1,51 @@
+#action {^You flee from combat!}
+{
+#send {report}
+}
+{9}
+
+#action {%1 is DEAD!!$}
+{
+#send {report}
+}
+{9}
+
+#action {^You have %d/%d hp%s%d/%d mv%s%d xp.}
+{
+#if {"$grepping" == "report"}
+{
+#echo {%0};
+#variable {grepping} {false}
+};
+#else
+{
+#if {$oldExp != %7}
+{
+#variable {oldExp} {%7}
+};
+#else
+{
+#echo {WARNING!!! You have reached level block!}
+}
+}
+}
+{9}
+
+#action {^Name:%s%S%sLevel:%*}
+{
+#if {!&{name}}
+{
+#variable {name} {%2};
+#script {gameDataPath} {echo "$HOME/tintin-adventurersinnrc.$name"};
+#variable {gameDataPath} {${gameDataPath[1]}}
+};
+#if {"$grepping" == "whoami"}
+{
+#echo {%0}
+}
+}
+{9}
+
 #action {^You %1 worship%2}
 {
 #if {"$grepping" == "god"}
@@ -41,7 +89,14 @@ score
 }
 {9}
 
-#alias {^{armor|god|gold}$}
+#alias {^report$}
+{
+#variable {grepping} {report};
+#send {report}
+}
+{9}
+
+#alias {^{armor|god|gold|whoami}$}
 {
 #variable {grepping} {%1};
 grep_score
@@ -76,3 +131,5 @@ grep_score
 }
 {9}
 #variable {grepping} {false}
+#variable {oldExp} {0}
+#gag {^You have %d/%d hp%s%d/%d mv%s%d xp.}

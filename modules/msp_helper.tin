@@ -1,3 +1,83 @@
+#action {%1 {parry|parries} %2 attack.$}
+{
+play parry
+}
+{9}
+
+#action {%1{r|'s} totally MISSES %*}
+{
+play miss
+}
+{9}
+
+#action {%1{r|'s} {chop|punch|slash|slice} {$damages} %5}
+{
+#if {"%3" == "slice"}
+{
+play slash
+};
+#else
+{
+play %3
+}
+}
+{9}
+
+#action {^You grab %1 and angle it in front of you.}
+{
+play draw_axe
+}
+{9}
+
+#action {^Flashes of lightning streak downward from the dark clouds overhead.}
+{
+play thunder
+}
+{9}
+
+#action {^The rain starts coming down in heavy sheets.}
+{
+play rain
+}
+{9}
+
+#action {^The sky darkens further, and it begins to rain even harder.}
+{
+play rain
+}
+{9}
+
+#action {^It starts to rain.}
+{
+play rain
+}
+{9}
+
+#action {^You can barely see anything around you, the rain is coming down so hard.}
+{
+play rain
+}
+{9}
+
+#action {^Its starts to thunder heavily, as the rain increases.}
+{
+#delay {1d3} {play thunder};
+play rain
+}
+{9}
+
+#action {^The three suns rise in the north%*}
+{
+play morning_ambiance
+}
+{9}
+
+#action {^Streaks of lightning begin to flash around you in the sky.}
+{
+play thunder
+}
+{9}
+
 #action {^The shadows grow long as the night begins to surround you.}
 {
 play night_ambiance
@@ -75,3 +155,4 @@ play death-fall
 play death-fall
 }
 {9}
+#variable {damages} {decimates|  \*\*  DESTROYS  \*\*  |hits|grazes|injures|Maims|mauls| MUTILATES |scratches}

@@ -4,14 +4,6 @@
 }
 {9}
 
-#ALIAS {^load %1}
-{
-	#script {pFile} {echo "$HOME/%1.tin"};
-	#variable {pFile} {${pFile[1]}};
-	#class {personal} {read} {$pFile}
-}
-{9}
-
 #ALIAS {^login$}
 {
 	#session {The Adventurers Inn} {theadventurersinn.com} {7171}
@@ -40,7 +32,8 @@
 
 #ALIAS {^quit$}
 {
-	#if {"$fileOpen" == "true"} {#class {personal} {write} {$pFile};#showme {Saving to $pFile}};
+clear_variables;
+	#script {echo "#class {gameData} {write} {$gameDataPath}};
 	#send {quit}
 }
 {9}
@@ -67,7 +60,6 @@
 #EVENT {PROGRAM START}
 {
     #script {for i in modules/*.tin ; do echo "#class {$(basename "$i" .tin)} {read} {$i}";done};
-#script {if [ -f "$HOME/.tintin-adventurersinnrc" ] ; then echo "#read {$HOME/.tintin-adventurersinnrc};#variable {pFile} {$HOME/.tintin-vampirewarsrc}";fi}
 }
 
 #EVENT {SESSION CONNECTED}
@@ -79,8 +71,6 @@
 	#showme {Logging to ${logFilePath[1]}${logFileName[1]}}
 }
 
-#GAG              {^[%d exp] <%dhp %dm %dmv>}
-#GAG              {^[%d/%d] [%d/%d]<%dhp %dm %dmv>}
 #PATHDIR          {d}  {u}  {32}
 #PATHDIR          {e}  {w}  {2}
 #PATHDIR          {n}  {s}  {1}
@@ -92,5 +82,3 @@
 #PATHDIR          {u}  {d}  {16}
 #PATHDIR          {w}  {e}  {8}
 #SUBSTITUTE       {%*}  { %0}  {5}
-#VARIABLE       {fileOpen}  {}
-#VARIABLE       {pFile}  {}
