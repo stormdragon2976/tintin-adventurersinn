@@ -1,3 +1,21 @@
+#action {^You %1 worship%2}
+{
+#if {"$grepping" == "god"}
+{
+#echo {%0}
+}
+}
+{9}
+
+#action {^Diety:%*}
+{
+#if {"$grepping" == "god"}
+{
+#echo {%0}
+}
+}
+{9}
+
 #action {^You are %1 {bashing|exotic weapons|piercing|slashing}.}
 {
 #if {"$grepping" == "armor"}
@@ -23,7 +41,7 @@ score
 }
 {9}
 
-#alias {^{armor|gold}$}
+#alias {^{armor|god|gold}$}
 {
 #variable {grepping} {%1};
 grep_score
@@ -44,6 +62,10 @@ grep_score
 #if {"$grepping" != "false"}
 {
 #gag {%0};
+#if {"$grepping" == "god"}
+{
+#echo {%0}
+};
 #variable {grepping} {false};
 #ungag {%%0}
 };
