@@ -1,0 +1,56 @@
+#action {^You are %1 {bashing|exotic weapons|piercing|slashing}.}
+{
+#if {"$grepping" == "armor"}
+{
+#echo {%0}
+}
+}
+{9}
+
+#action {^[ Hit Return to continue ]}
+{
+#if {"$grepping" != "false"}
+{
+#cr
+}
+}
+{9}
+
+#alias {^grep_score$}
+{
+#gag %%0;
+score
+}
+{9}
+
+#alias {^{armor|gold}$}
+{
+#variable {grepping} {%1};
+grep_score
+}
+{9}
+
+#action {^You have%s%d Gold and%s%d Silver coi{ns|n} {on you|in the bank}.}
+{
+#if {"$grepping" == "gold"}
+{
+#echo {%0}
+}
+}
+{9}
+
+#action {^You %1 tith{e|ing} %3}
+{
+#if {"$grepping" != "false"}
+{
+#gag {%0};
+#variable {grepping} {false};
+#ungag {%%0}
+};
+#else
+{
+#echo {%0}
+}
+}
+{9}
+#variable {grepping} {false}

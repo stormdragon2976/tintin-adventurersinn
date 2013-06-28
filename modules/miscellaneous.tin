@@ -5,4 +5,8 @@ relax;
 sleep
 }
 {9}
-
+#alias {^/$}
+{
+pray temple
+}
+{9}

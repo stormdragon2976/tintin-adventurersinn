@@ -48,11 +48,11 @@ synth_play $hpSevere
 	{
 		#variable {enemyConditionTone} {575}
 	};
-	#elseif {"%2" == "Has some open cuts and bruises."}
+	#elseif {"%2" == "Scratched and bruised."}
 	{
 		#variable {enemyConditionTone} {550}
 	};
-	#elseif {"%2" == "Scratched and bruised."}
+	#elseif {"%2" == "Has some open cuts and bruises."}
 	{
 		#variable {enemyConditionTone} {500}
 	};
