@@ -57,7 +57,7 @@ grep_score
 }
 {9}
 
-#action {^You %1 tith{e|ing} %3}
+#action {^You %1 tith{ed|e|ing} %3}
 {
 #if {"$grepping" != "false"}
 {
