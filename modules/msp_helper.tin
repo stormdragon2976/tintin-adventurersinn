@@ -1,3 +1,9 @@
+#action {^You need something to eat.}
+{
+play hungry
+}
+{9}
+
 #action {%1 {parry|parries} %2 attack.$}
 {
 play parry
@@ -10,7 +16,7 @@ play miss
 }
 {9}
 
-#action {%1{r|'s} {chop|punch|slash|slice} {$damages} %5}
+#action {%1{r|'s} {chop|kick|pound|punch|slash|slice} {$damages} %5}
 {
 #if {"%3" == "slice"}
 {
