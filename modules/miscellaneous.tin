@@ -1,3 +1,17 @@
+#action {%1 DISARMS you and sends your weapon flying!$}
+{
+play disarm;
+get $weapon;
+wield $weapon
+}
+{9}
+
+#action {You wiel%1.}
+{
+#regexp {%1} {{.*} {.*}} {#variable {weapon} {&2}}
+}
+{9}
+
 #ACTION {^You disappear into the void.$}
 {
     #delay {1d15} {#script {shuf -n 1 -e "l" "lo" "loo" "look"}}

@@ -1,3 +1,15 @@
+#action {%1 tr{ies|y} to disarm %3, but fai{ls|l}.$}
+{
+play parry
+}
+{9}
+
+#action {^You buy %1 for %d {gold|silver}.}
+{
+play coins
+}
+{9}
+
 #action {%1 {draws|draw} %2 from its sheath.}
 {
 play draw_blade
@@ -30,6 +42,12 @@ play armor
 #action {%1 {gains|gain} a firm grip of %3 and levels it before {her|him|it|your}self.}
 {
 play draw_polearm
+}
+{9}
+
+#action {^%d silver coins for your sacrifice.$}
+{
+play god_coins
 }
 {9}
 
@@ -106,6 +124,24 @@ play thunder
 }
 {9}
 
+#action {^The rain slows to a steady drizzle.}
+{
+play rain
+}
+{9}
+
+#action {^It slows from a down pour, to a steady rain.}
+{
+play rain
+}
+{9}
+
+#action {^The rain starts pouring down.}
+{
+play rain
+}
+{9}
+
 #action {^The rain starts coming down in heavy sheets.}
 {
 play rain
@@ -126,6 +162,13 @@ play rain
 
 #action {^You can barely see anything around you, the rain is coming down so hard.}
 {
+play rain
+}
+{9}
+
+#action {^The rain falls faster, as the lightning flashes all around.}
+{
+#delay {1d3} {play thunder};
 play rain
 }
 {9}
