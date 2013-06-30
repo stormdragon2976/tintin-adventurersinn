@@ -1,3 +1,20 @@
+#action {^{And|You are} %1 as a %2}
+{
+#if {"$grepping" == "level"}
+{
+#echo {%0}
+}
+}
+{9}
+
+#action {^{You cannot train adequately here|This is not a useable hall for training}.}
+{
+#echo {%0};
+#variable {grepping} {level};
+grep_score
+}
+{9}
+
 #action {^You flee from combat!}
 {
 #send {report}
@@ -25,7 +42,8 @@
 };
 #else
 {
-#echo {WARNING!!! You have reached level block!}
+synth_play $eventSound;
+#echo {WARNING!!! You may have reached level block, there was no exp from that last kill!}
 }
 }
 }
@@ -36,8 +54,10 @@
 #if {!&{name}}
 {
 #variable {name} {%2};
-#script {gameDataPath} {echo "$HOME/tintin-adventurersinnrc.$name"};
-#variable {gameDataPath} {${gameDataPath[1]}}
+#script {gameDataPath} {echo "$HOME/.tintin-adventurersinnrc.$name"};
+#variable {gameDataPath} {${gameDataPath[1]}};
+#class {gameData} {read} {$gameDataPath};
+#class {gameData} {open}
 };
 #if {"$grepping" == "whoami"}
 {

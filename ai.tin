@@ -1,3 +1,34 @@
+#alias {^mod{kill|load|reload} %S$}
+{
+#if {"%1" == "{kill|reload}"}
+{
+#class {%2} {kill};
+#showme {Class %2 has been killed.}
+};
+#if {"%1" == "{load|reload}"}
+{
+#showme {Loading modules/%2.tin};
+#class {%2} {read} {modules/%2.tin};
+#class {gameData} {open}
+}
+}
+{9}
+
+#alias {^csave$}
+{
+clear_variables;
+#showme {Saving data for $name...};
+#if {&{gameDataPath}}
+{
+	#class {gameData} {write} {$gameDataPath};
+};
+#else
+{
+#showme {Something went wrong, game data did not save.}
+}
+}
+{9}
+
 #ACTION {^You disappear into the void.$}
 {
 	#delay {1d15} {#script {shuf -n 1 -e "l" "lo" "loo" "look"}}
@@ -33,7 +64,14 @@
 #ALIAS {^quit$}
 {
 clear_variables;
-	#script {echo "#class {gameData} {write} {$gameDataPath}};
+#if {&{gameDataPath}}
+{
+	#class {gameData} {write} {$gameDataPath};
+};
+#else
+{
+#showme {Something went wrong, game data did not save.}
+};
 	#send {quit}
 }
 {9}

@@ -10,16 +10,12 @@
 #action {^ %s Welcome to the Adventurers' Inn!}
 {
 whoami;
-#script {if [ -f "$gameDataPath" ] ; then echo "#class {gameData} {read} {$gameDataPath}";fi};
-#class {gameData} {open}
 }
 {9}
 
 #action {^Reconnecting. These are the tells you missed:}
 {
 whoami;
-#script {if [ -f "$gameDataPath" ] ; then echo "#class {gameData} {read} {$gameDataPath}";fi};
-#class {gameData} {open}
 }
 {9}
 

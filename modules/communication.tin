@@ -8,7 +8,7 @@
 }
 {8}
 
-#ACTION {^%S {$communicationChannels}%3'%4'$}
+#ACTION {^%S {$communicationChannels}%3'%4'}
 {
 	#if {"%2" == "{asks|ask|exclaims|exclaim|frowns|frown|grins|grin|mutters|mutter|rasps|rasp|says|say}"}
 	{
@@ -19,7 +19,7 @@
 			#list {say} {delete} {11}
 		}
 	};
-	#if {"%2" == "{chats|chat} OOC:"}
+	#if {"%2" == "{chats OOC:|chat OOC:|chats|chat}"}
 	{
 		#list {chat} {insert} {1} {%0};
 		#list {chat} {size} {i};
@@ -95,36 +95,6 @@
 	{
 		#list {event} {delete} {11}
 	}
-}
-{9}
-
-#ACTION {^You feel slightly more in control of your beast.$}
-{
-	synth_play $eventSound;
-	#list {event} {insert} {1} {%0};
-	#list {event} {size} {i};
-	#if {$i >= 11}
-	{
-		#list {event} {delete} {11}
-	}
-}
-{9}
-
-#ACTION {^[{Ventrue|Gangrel|Tremere|Toreador|Brujah|Malkavian|Nosferatu}]:<%S> %3}
-{
-	#list {clantell} {insert} {1} {%0};
-	#list {clantell} {size} {i};
-	#if {$i >= 11}
-	{
-		#list {clantell} {delete} {11}
-	};
-	#list {all} {insert} {1} {%0};
-	#list {all} {size} {i};
-	#if {$i >= 11}
-	{
-		#list {all} {delete} {11}
-	};
-	synth_play $msgSound
 }
 {9}
 

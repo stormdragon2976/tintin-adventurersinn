@@ -1,4 +1,4 @@
-#VARIABLE         {eventSound}  {"|sox -np synth 0.2 tri E3" "| sox -np synth 0.2 tri B3" "| sox -np synth 0.2 tri E4" "| sox -np synth 0.2 tri B3" "| sox -np synth 0.2 tri E4" vol 0.7}
+#VARIABLE         {eventSound}  {"|sox -np synth 0.2 pl E3 pl E4" "| sox -np synth 0.2 pl B3 pl B4" "| sox -np synth 0.2 pl E4 pl E5" "| sox -np synth 0.2 pl B3 pl B4" "| sox -np synth 0.2 pl E4 pl E5" remix - vol 0.7}
 #VARIABLE         {pkSound}  {"|sox -np synth sq G3 fade 0 .25 .05" "|sox -np synth sq G3 fade 0 .3 .33" "|sox -np synth sq C4 fade 0 1 .25" "|sox -np synth sq G3 fade 0 .25 .3" "|sox -np synth sq C4 fade 0 .2 .25" "|sox -np synth sq E4 fade 0 .75 1" vol 0.4}
 #VARIABLE         {loginSound}  {"|sox -np synth sq E3 fade 0 .25 0.3" "|sox -np synth sq E4 fade 0 .7 0" vol 0.4}
 #VARIABLE         {logoutSound}  {"|sox -np synth sq E4 fade 0 .25 0.3" "|sox -np synth sq E3 fade 0 .7 0" vol 0.4}

@@ -1,3 +1,39 @@
+#action {%1 {gains|gain} a firm grip of %3 and levels it before {her|him|it|your}self.}
+{
+play draw_polearm
+}
+{9}
+
+#action {^You get %d {gold|silver} coins from the corpse of %3.}
+{
+play coins
+}
+{9}
+
+#action {^You have deposited %d {gold|silver} pieces.}
+{
+play deposit
+}
+{9}
+
+#action {^You uncoil a whip and loosen some slack from it.}
+{
+play draw_whip
+}
+{9}
+
+#action {%1 screams and attacks!$}
+{
+play join_battle
+}
+{9}
+
+#action {%1 {blocks|block} {her|his|its|your} attack with {a|your} shield.$}
+{
+play shield_block
+}
+{9}
+
 #action {^You need something to eat.}
 {
 play hungry
@@ -10,13 +46,13 @@ play parry
 }
 {9}
 
-#action {%1{r|'s} totally MISSES %*}
+#action {%1{r|'s} %2 totally MISSES %3.$}
 {
 play miss
 }
 {9}
 
-#action {%1{r|'s} {chop|kick|pound|punch|slash|slice} {$damages} %5}
+#action {%1{r|'s} {chop|kick|pierce|pound|punch|slash|slice|whip} {$damages} %5}
 {
 #if {"%3" == "slice"}
 {
@@ -161,4 +197,4 @@ play death-fall
 play death-fall
 }
 {9}
-#variable {damages} {decimates|  \*\*  DESTROYS  \*\*  |hits|grazes|injures|Maims|mauls| MUTILATES |scratches}
+#variable {damages} {decimates|  \*\*  DESTROYS  \*\*  |hits|grazes|injures|Maims|massacres|mauls| MUTILATES |scratches}
