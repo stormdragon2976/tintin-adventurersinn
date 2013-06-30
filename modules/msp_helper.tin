@@ -1,3 +1,15 @@
+#action {^You feel your pulse slow down.$}
+{
+play pulse
+}
+{9}
+
+#action {^Your pulse races as you are consumed by rage!$}
+{
+play berserk
+}
+{9}
+
 #action {%1 tr{ies|y} to disarm %3, but fai{ls|l}.$}
 {
 play parry
@@ -121,6 +133,12 @@ play draw_axe
 #action {^Flashes of lightning streak downward from the dark clouds overhead.}
 {
 play thunder
+}
+{9}
+
+#action {^The clouds darken, as rain begins to fall.}
+{
+play rain
 }
 {9}
 

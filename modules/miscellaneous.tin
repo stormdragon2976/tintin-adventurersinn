@@ -1,3 +1,26 @@
+#action {^Coballot waves goodbye to you.  Have a safe journey}
+{
+whoami
+}
+{9}
+
+#action {^In your dreams, or what?  You're asleep right now.$}
+{
+#gag {%0};
+#if {&{lastCommand}}
+{
+wake;
+$lastCommand;
+sleep
+};
+#else
+{
+#echo {%0}
+};
+#unvariable {lastCommand}
+}
+{9}
+
 #action {%1 DISARMS you and sends your weapon flying!$}
 {
 play disarm;
