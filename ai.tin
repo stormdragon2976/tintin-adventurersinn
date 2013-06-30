@@ -1,37 +1,15 @@
-#alias {^mod{kill|load|reload} %S$}
+#ALIAS {^csave$}
 {
-#if {"%1" == "{kill|reload}"}
-{
-#class {%2} {kill};
-#showme {Class %2 has been killed.}
-};
-#if {"%1" == "{load|reload}"}
-{
-#showme {Loading modules/%2.tin};
-#class {%2} {read} {modules/%2.tin};
-#class {gameData} {open}
-}
-}
-{9}
-
-#alias {^csave$}
-{
-clear_variables;
-#showme {Saving data for $name...};
-#if {&{gameDataPath}}
-{
-	#class {gameData} {write} {$gameDataPath};
-};
-#else
-{
-#showme {Something went wrong, game data did not save.}
-}
-}
-{9}
-
-#ACTION {^You disappear into the void.$}
-{
-	#delay {1d15} {#script {shuf -n 1 -e "l" "lo" "loo" "look"}}
+	clear_variables;
+	#showme {Saving data for $name...};
+	#if {&{gameDataPath}}
+	{
+		#class {gameData} {write} {$gameDataPath}
+	};
+	#else
+	{
+		#showme {Something went wrong, game data did not save.}
+	}
 }
 {9}
 
@@ -41,9 +19,34 @@ clear_variables;
 }
 {9}
 
-#alias {^set%.$}
+#ALIAS {^mod{kill|load|reload} %S$}
 {
-	#macro {\e%1}
+	#if {"%1" == "{kill|reload}"}
+	{
+		#class {%2} {kill};
+		#showme {Class %2 has been killed.}
+	};
+	#if {"%1" == "{load|reload}"}
+	{
+		#showme {Loading modules/%2.tin};
+		#class {%2} {read} {modules/%2.tin};
+		#class {gameData} {open}
+	}
+}
+{9}
+
+#ALIAS {^quit$}
+{
+	clear_variables;
+	#if {&{gameDataPath}}
+	{
+		#class {gameData} {write} {$gameDataPath}
+	};
+	#else
+	{
+		#showme {Something went wrong, game data did not save.}
+	};
+	#send {quit}
 }
 {9}
 
@@ -61,18 +64,9 @@ clear_variables;
 }
 {9}
 
-#ALIAS {^quit$}
+#ALIAS {^set%.$}
 {
-clear_variables;
-#if {&{gameDataPath}}
-{
-	#class {gameData} {write} {$gameDataPath};
-};
-#else
-{
-#showme {Something went wrong, game data did not save.}
-};
-	#send {quit}
+	#macro {\e%1}
 }
 {9}
 
@@ -97,7 +91,7 @@ clear_variables;
 #CONFIG           {WORDWRAP}  {ON}
 #EVENT {PROGRAM START}
 {
-    #script {for i in modules/*.tin ; do echo "#class {$(basename "$i" .tin)} {read} {$i}";done};
+	#script {for i in modules/*.tin ; do echo "#class {$(basename "$i" .tin)} {read} {$i}";done}
 }
 
 #EVENT {SESSION CONNECTED}

@@ -1,3 +1,32 @@
+#action {%1 {draws|draw} %2 from its sheath.}
+{
+play draw_blade
+}
+{9}
+
+#action {^You are surrounded by a force shield.}
+{
+play shield
+}
+{9}
+
+#action {^You have memorized %1.}
+{
+#if {"$playMemorize" == "true"}
+{
+#variable {playMemorize} {false};
+synth_play $memorized;
+#delay {1} {#variable {playMemorize} {true}}
+}
+}
+{9}
+
+#action {^You feel the power of magic protecting you.}
+{
+play armor
+}
+{9}
+
 #action {%1 {gains|gain} a firm grip of %3 and levels it before {her|him|it|your}self.}
 {
 play draw_polearm
@@ -28,7 +57,7 @@ play join_battle
 }
 {9}
 
-#action {%1 {blocks|block} {her|his|its|your} attack with {a|your} shield.$}
+#action {%1 {blocks|block} %3 attack with {a|your} shield.$}
 {
 play shield_block
 }
@@ -52,7 +81,7 @@ play miss
 }
 {9}
 
-#action {%1{r|'s} {chop|kick|pierce|pound|punch|slash|slice|whip} {$damages} %5}
+#action {%1{r|'s} {chop|kick|pierce|magic missile|pound|punch|shocking grasp|slash|slice|whip} {$damages} %5}
 {
 #if {"%3" == "slice"}
 {
@@ -198,3 +227,4 @@ play death-fall
 }
 {9}
 #variable {damages} {decimates|  \*\*  DESTROYS  \*\*  |hits|grazes|injures|Maims|massacres|mauls| MUTILATES |scratches}
+#variable {playMemorize} {true}

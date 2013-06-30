@@ -1,3 +1,9 @@
+#ACTION {^You disappear into the void.$}
+{
+    #delay {1d15} {#script {shuf -n 1 -e "l" "lo" "loo" "look"}}
+}
+{9}
+ 
 #alias {clear_variables}
 {
 #unvariable {currentHitpoints};

@@ -1,4 +1,4 @@
-#action {^{And|You are} %1 as a %2}
+#action {^{and|You are} %1 as a %2}
 {
 #if {"$grepping" == "level"}
 {
@@ -7,7 +7,7 @@
 }
 {9}
 
-#action {^{You cannot train adequately here|This is not a useable hall for training}.}
+#action {^{You cannot train adequately here|This is not a suitable place to train|This is not a useable hall for training}.}
 {
 #echo {%0};
 #variable {grepping} {level};
@@ -38,12 +38,17 @@ grep_score
 {
 #if {$oldExp != %7}
 {
+#variable {levelBlocked} {false};
 #variable {oldExp} {%7}
 };
 #else
 {
+#if {"$levelBlocked" != "true"}
+{
+#variable {levelBlocked} {true};
 synth_play $eventSound;
 #echo {WARNING!!! You may have reached level block, there was no exp from that last kill!}
+}
 }
 }
 }

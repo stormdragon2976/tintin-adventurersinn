@@ -8,5 +8,5 @@
 #variable {hpInjured} {"|sox -np synth tri C#3 tri E3 tri A3" remix - fade 0 5.5 5}
 #variable {hpHurting} {"|sox -np synth tri C#2 tri E2 tri A2" remix - fade 0 5.5 5}
 #variable {hpGashes} {"|sox -np synth sq C#5 sq D#5 sq F#5 sq A5 sq C#6" remix - fade 0 5.5 5}
-#variable {hpSerious} {"|sox -np synth sq D#3 sq B3 sq C#4 sq F4 sq A4" remix - fade 0 5.5 5}
-#variable {hpSevere} {"|sox -np synth tri D#3 sq B3 tri C#4 sq F4 tri A4 tri D#4 sq B4 tri C#5 sq F5 tri A5" remix - fade 0 5.5 5}
+#variable {hpSerious} {"|sox -np synth sq D#3 sq B3 sq C#4 sq F4 sq A4" remix - fade 0 5.5 5} #variable {hpSevere} {"|sox -np synth tri D#3 sq B3 tri C#4 sq F4 tri A4 tri D#4 sq B4 tri C#5 sq F5 tri A5" remix - fade 0 5.5 5}
+#variable {memorized} {"|sox -np synth pl C3 pl E3 pl G3 fade 0 .25 .1" "|sox -np synth pl C3 pl E3 pl G3 fade l 0 .75 1" remix -}
