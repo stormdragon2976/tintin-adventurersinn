@@ -4,6 +4,11 @@ open $lastDirection
 }
 {9}
 
+#MACRO {\eo}
+{
+	open $lastDirection
+}
+
 #MACRO {\e,}
 {
 	#variable {lastDirection} {south};
