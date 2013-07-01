@@ -1,3 +1,15 @@
+#action {^You begin to train...$}
+{
+play levelup
+}
+{9}
+
+#action {^The rain stops, but it continues to lightning in the dark clouds above.}
+{
+play thunder
+}
+{9}
+
 #action {^You feel your pulse slow down.$}
 {
 play pulse
@@ -156,19 +168,19 @@ play rain
 
 #action {^The rain starts pouring down.}
 {
-play rain
+play downpour
 }
 {9}
 
 #action {^The rain starts coming down in heavy sheets.}
 {
-play rain
+play downpour
 }
 {9}
 
 #action {^The sky darkens further, and it begins to rain even harder.}
 {
-play rain
+play downpour
 }
 {9}
 
@@ -180,14 +192,14 @@ play rain
 
 #action {^You can barely see anything around you, the rain is coming down so hard.}
 {
-play rain
+play downpour
 }
 {9}
 
 #action {^The rain falls faster, as the lightning flashes all around.}
 {
 #delay {1d3} {play thunder};
-play rain
+play downpour
 }
 {9}
 
