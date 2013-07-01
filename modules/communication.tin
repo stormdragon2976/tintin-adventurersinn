@@ -8,7 +8,7 @@
 }
 {8}
 
-#ACTION {^%S {$communicationChannels}%3'%4'}
+#ACTION {^%S {$communicationChannels}%3'%4}
 {
 	#if {"%2" == "{asks|ask|exclaims|exclaim|frowns|frown|grins|grin|mutters|mutter|rasps|rasp|says|say}"}
 	{
@@ -86,7 +86,7 @@
 }
 {9}
 
-#ACTION {^You are now%1}
+#ACTION {^You {are now|have become better at}%1}
 {
 	synth_play $eventSound;
 	#list {event} {insert} {1} {%0};
