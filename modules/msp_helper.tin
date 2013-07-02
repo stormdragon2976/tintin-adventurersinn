@@ -1,3 +1,29 @@
+#action {^You drink %1 from %2.}
+{
+play drink
+}
+{9}
+
+#action {^You eat %1.}
+{
+play eat
+}
+{9}
+
+#action {^You are thirsty.}
+{
+play thirsty
+}
+{9}
+
+#action {^The thunder and lightning quieten down, as the rain dissipates some.}
+{
+#delay {1d5} {play thunder1};
+play rain
+}
+{9}
+
+
 #action {^You begin to train...$}
 {
 play levelup
@@ -230,7 +256,7 @@ play night_ambiance
 
 #action {^You start to hear deep rumbling, as lightning flashes in the sky.}
 {
-play	thunder
+play thunder
 }
 {9}
 
