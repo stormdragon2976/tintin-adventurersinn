@@ -1,3 +1,9 @@
+#alias {^cl{ear|s}$}
+{
+#60 {#echo {}}
+}
+{9}
+
 #action {^Coballot waves goodbye to you.  Have a safe journey}
 {
 whoami
