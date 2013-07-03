@@ -104,7 +104,7 @@ synth_play $eventSound;
 }
 {9}
 
-#action {^[ Hit Return to continue ]}
+#action {^[ Hit {Enter|Return} to continue ]}
 {
 #if {"$grepping" != "false"}
 {

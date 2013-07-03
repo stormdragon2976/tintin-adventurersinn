@@ -167,7 +167,7 @@ play miss
 }
 {9}
 
-#action {%1{r|'s} {chop|claw|kick|pierce|magic missile|pound|punch|shocking grasp|slash|slice|whip} {$damages} %5}
+#action {%1{r|'s} {bite|chop|claw|kick|pierce|magic missile|pound|punch|shocking grasp|slash|slice|whip} {$damages} %5}
 {
 #if {"%3" == "slice"}
 {
