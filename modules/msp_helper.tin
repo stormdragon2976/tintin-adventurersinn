@@ -1,3 +1,21 @@
+#action {^You invert %1, spilling %2 all over %3.}
+{
+play empty_liquid
+}
+{9}
+
+#action {^You fill %1 with %2 from %3.}
+{
+play fill
+}
+{9}
+
+#action {^The rain dimenishes some, to a slow, steady pace.}
+{
+play rain
+}
+{9}
+
 #action {^You drink %1 from %2.}
 {
 play drink
@@ -149,7 +167,7 @@ play miss
 }
 {9}
 
-#action {%1{r|'s} {chop|kick|pierce|magic missile|pound|punch|shocking grasp|slash|slice|whip} {$damages} %5}
+#action {%1{r|'s} {chop|claw|kick|pierce|magic missile|pound|punch|shocking grasp|slash|slice|whip} {$damages} %5}
 {
 #if {"%3" == "slice"}
 {

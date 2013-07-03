@@ -1,3 +1,9 @@
+#alias {^ex{p|per|pere|peren|perenc|perence}$}
+{
+#echo {^You have $oldExp experience.}
+}
+{9}
+
 #action {^{and|You are} %1 as a %2}
 {
 #if {"$grepping" == "level"}
@@ -103,9 +109,13 @@ synth_play $eventSound;
 #if {"$grepping" != "false"}
 {
 #cr
+};
+#else
+{
+#macro { } {#cr;#unmacro { }}
 }
 }
-{9}
+{8}
 
 #alias {^grep_score$}
 {

@@ -1,3 +1,4 @@
+#substitute {^[ Hit Return to continue ]} {^[ Hit Space to continue ]} {9}
 #alias {^cl{ear|s}$}
 {
 #60 {#echo {}}
