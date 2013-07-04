@@ -112,10 +112,10 @@ synth_play $eventSound;
 };
 #else
 {
-#macro { } {#cr;#unmacro { }}
+#CONFIG {REPEAT ENTER} {OFF}
 }
 }
-{8}
+{9}
 
 #alias {^grep_score$}
 {

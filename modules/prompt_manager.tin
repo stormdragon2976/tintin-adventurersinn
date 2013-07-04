@@ -1,6 +1,6 @@
 #ACTION {^< Hp: %S  Ftg: %2 >}
 {
-#unmacro { };
+#CONFIG {REPEAT ENTER} {ON};
 #if {"$oldCondition" != "%0"}
 {
 #echo {%0};
