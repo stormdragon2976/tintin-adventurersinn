@@ -115,7 +115,10 @@ play draw_polearm
 
 #action {^%d silver coins for your sacrifice.$}
 {
+#if {%1 > 0}
+{
 play god_coins
+}
 }
 {9}
 
