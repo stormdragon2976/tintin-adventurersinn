@@ -1,3 +1,9 @@
+#action {^You sell%*}
+{
+play coins
+}
+{9}
+
 #action {^You invert %1, spilling %2 all over %3.}
 {
 play empty_liquid
@@ -170,11 +176,19 @@ play miss
 }
 {9}
 
-#action {%1{r|'s} {bite|chop|claw|kick|pierce|magic missile|pound|punch|shocking grasp|slash|slice|whip} {$damages} %5}
+#action {%1{r|'s} {bite|chop|claw|kick|pierce|magic missile|pound|punch|shocking grasp|slash|slice|thrust|thwack|whip} {$damages} %5}
 {
 #if {"%3" == "slice"}
 {
 play slash
+};
+#elseif {"%3" == "thrust"}
+{
+play pierce
+};
+#elseif {"%3" == "thwack"}
+{
+play pound
 };
 #else
 {

@@ -3,3 +3,4 @@
 #substitute {closeby to the up.$} {closeby above.}
 #substitute {^You hear a blood filled death cry from %1's.} {You hear a blood filled death cry from %1.}
 #substitute {^Its starts to thunder heavily, as the rain increases.} {It starts to thunder heavily, as the rain increases.}
+#substitute {%1 {says|say} in common,} {%1 %2,} {1}
