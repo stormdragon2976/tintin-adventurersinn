@@ -7,6 +7,10 @@ if [ -n "$mpd" ] ; then
 mpd="true"
 fi
 
+if [[ $(pgrep xmms2) ]] ; then
+xmms="true"
+fi
+
 #check for mpd
 if [ "$mpd" == "true" ] ; then
 musicURL="$1"
@@ -14,6 +18,16 @@ musicProvider="$2"
 artist="$(mpc -f %artist% current)"
 title="$(mpc -f %title% current)"
 album="$(mpc -f %album% current)"
+if [ -n "$musicURL" -a "$musicURL" != false ] ; then
+url="$(curl -s "http://is.gd/create.php?format=simple&url=$(echo "${musicURL}${artist} ${title}" | sed -e 's/"/%22/g' -e 's/&/%26/g' -e "s/'/%27/g" -e 's/</%3c/g' -e 's/>/%3e/g' -e 's/ /%20/g')")"
+fi
+#check for xmms2
+elif [ "$xmms" == "true" ] ; then
+musicURL="$1"
+musicProvider="$2"
+artist="$(nyxmms2 info | grep artist | cut -d '=' -f2-)"
+album="$(nyxmms2 info | grep album | cut -d '=' -f2-)"
+title="$(nyxmms2 info | grep title | cut -d '=' -f2-)"
 if [ -n "$musicURL" -a "$musicURL" != false ] ; then
 url="$(curl -s "http://is.gd/create.php?format=simple&url=$(echo "${musicURL}${artist} ${title}" | sed -e 's/"/%22/g' -e 's/&/%26/g' -e "s/'/%27/g" -e 's/</%3c/g' -e 's/>/%3e/g' -e 's/ /%20/g')")"
 fi

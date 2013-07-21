@@ -33,27 +33,33 @@
 
 #MACRO {\e+}
 {
+#nop {Increase music player volume};
 #switch {"$musicPlayer"}
 {
 #case {"mp{c|d}"} {#system {mpc -q volume +5}};
+#case {"xmms2"} {#system {amixer sset softvol 5+ &> /dev/null}};
 	#default {#system {cmus-remote -v +5%}}
 }
 }
 
 #MACRO {\eB}
 {
+#nop {Music player next};
 #switch {"$musicPlayer"}
 {
 #case {"mp{c|d}"} {#system {mpc -q next}};
+#case {"xmms2"} {#system {nyxmms2 next}};
 	#default {#system {cmus-remote -n}}
 }
 }
 
 #MACRO {\eC}
 {
+#nop {Music player pause};
 #switch {"$musicPlayer"}
 {
 #case {"mp{c|d}"} {#system {mpc -q pause}};
+#case {"xmms2"} {#system {nyxmms2 toggle}};
 	#default {#system {cmus-remote -u}}
 }
 }
@@ -73,19 +79,24 @@
 
 #MACRO {\eR}
 {
+#nop {Music player repeat.};
 #switch {"$musicPlayer"}
 {
 #case {"mp{c|d}"} {#system {mpc repeat | grep repeat: | tr -s " " | cut -d " " -f3- | cut -d " " -f-2}};
-	#default {#system {cmus-remote -R};
-	#script {echo "#showme {Cmus $(cmus-remote -Q | grep 'repeat ' | sed 's/true/on/g' | sed 's/false/off/g' | sed 's/set //').}"}}
+    #case {"xmms2"} {#system {nyxmms2 repeat}};
+    #default {#system {cmus-remote -R};
+    #script {echo "#showme {Cmus $(cmus-remote -Q | grep 'repeat ' | sed 's/true/on/g' | sed 's/false/off/g' | sed 's/set //').
+}"}}
 }
 }
 
 #MACRO {\eS}
 {
+#nop {Music player randomize tracks.};
 #switch {"$musicPlayer"}
 {
 #case {"mp{c|d}"} {#system {mpc random | grep random: | tr -s " " | cut -d " " -f5- | cut -d " " -f-2}};
+	#case {"xmms2"} {#system {nyxmms2 playlist shuffle;if [ $? -eq 0 ] ; then echo "Playlist shuffled.";fi}};
 	#default {#system {cmus-remote -S};
 	#script {echo "#showme {Cmus $(cmus-remote -Q | grep 'shuffle' | sed 's/true/on/g' | sed 's/false/off/g' | sed 's/set //').}"}}
 }
@@ -93,66 +104,80 @@
 
 #MACRO {\eU}
 {
+#nop {Currently playing track};
 #switch {"$musicPlayer"}
 {
 #case {"mp{c|d}"} {#script {echo "#showme {Playing: $(mpc current)}"}};
+#case {"xmms2"} {#script {echo "#showme {$(nyxmms2 current)}"}};
 	#default {#script {echo "#showme {Playing: $(scripts/music.sh false)}"}}
 }
 }
 
 #MACRO {\eV}
 {
+#nop {Music player stop.};
 #switch {"$musicPlayer"}
 {
 #case {"mp{c|d}"} {#system {mpc -q stop}};
+#case {"xmms2"} {#system {nyxmms2 stop}};
 	#default {#system {cmus-remote -s}}
 }
 }
 
 #MACRO {\eX}
 {
+#nop {Music player play.};
 #switch {"$musicPlayer"}
 {
 #case {"mp{c|d}"} {#system {mpc -q play}};
+#case {"xmms2"} {#system {nyxmms2 play}};
 	#default {#system {cmus-remote -p}}
 }
 }
 
 #MACRO {\eZ}
 {
+#nop {Music player previous track.};
 #switch {"$musicPlayer"}
 {
 #case {"mp{c|d}"} {#system {mpc -q prev}};
+#case {"xmms2"} {#system {nyxmms2 prev}};
 	#default {#system {cmus-remote -r}}
 }
 }
 
 #MACRO {\e\x7B}
 {
+#nop {Music player seek backward.};
 #switch {"$musicPlayer"}
 {
 #case {"mp{c|d}"} {#system {mpc -q seek -5}};
+#case {"xmms2"} {#system {nyxmms2 seek -5}};
 	#default {#system {cmus-remote -k -5}}
 }
 }
 
 #MACRO {\e\x7D}
 {
+#nop {Music player seek forward.};
 #switch {"$musicPlayer"}
 {
 #case {"mp{c|d}"} {#system {mpc -q seek +5}};
+#case {"xmms2"} {#system {nyxmms2 seek +5}};
 	#default {#system {cmus-remote -k +5}}
 }
 }
 
 #MACRO {\e_}
 {
+#nop {Music player volume down.};
 #switch {"$musicPlayer"}
 {
 #case {"mp{c|d}"} {#system {mpc -q volume -5}};
+#case {"xmms2"} {#system {amixer sset softvol 5- &> /dev/null}};
 	#default {#system {cmus-remote -v -5%}}
 }
 }
 
-#VARIABLE         {musicChannel}  {cooc}
+#VARIABLE         {musicChannel}  {music}
 #variable {musicChannelInstruments} {"bagpipes" "guitar" "armonica" "beer bottle organ" "floppy drives" "timpani drums" "steel guitar" "vuvuzela" "cello" "didgeridoo" "harp" "penny whistle" "keytar" "theremin" "piccolo" "harpsichord" "fiddle" "uilleann pipes" "banjo" "piano" "accordion" "washboard" "triangle" "kazoo" "glockenspiel" "lyre" "lute" "violin" "koto" "saw" "cimbalo"}

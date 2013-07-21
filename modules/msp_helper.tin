@@ -178,15 +178,21 @@ play miss
 
 #action {%1{r|'s} {bite|chop|claw|kick|pierce|magic missile|pound|punch|shocking grasp|slash|slice|thrust|thwack|whip} {$damages} %5}
 {
-#if {"%3" == "slice"}
+#script {weaponSound} {echo "%3" | tr " " "_"};
+#variable {weaponSound} {${weaponSound[1]}};
+#if {"$weaponSound" == "slice"}
 {
 play slash
 };
-#elseif {"%3" == "thrust"}
+#elseif {"$weaponSound" == "shock"}
+{
+play shocking_grasp
+};
+#elseif {"$weaponSound" == "thrust"}
 {
 play pierce
 };
-#elseif {"%3" == "thwack"}
+#elseif {"$weaponSound" == "{crush|smash|thwack}"}
 {
 play pound
 };
@@ -292,6 +298,12 @@ play night_ambiance
 #action {^You start to hear deep rumbling, as lightning flashes in the sky.}
 {
 play thunder
+}
+{9}
+
+#action {^You hear %S say inside you%*}
+{
+play need_to_worship
 }
 {9}
 
