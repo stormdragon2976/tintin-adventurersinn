@@ -1,3 +1,15 @@
+#action {%1 {sheaths|sheath} %*.}
+{
+play sheath_blade
+}
+{9}
+
+#action {^You feel {fully refreshed|less tired}{\.|!}}
+{
+play refresh
+}
+{9}
+
 #action {^You sell%*}
 {
 play coins
@@ -96,13 +108,24 @@ play shield
 }
 {9}
 
+#action {^You {drop|get|put} %*}
+{
+#if {"$play_%1" == "true"}
+{
+#variable {play_%1} {false};
+play %1;
+#delay {0.3} {#variable {play_%1} {true}}
+}
+}
+{9}
+
 #action {^You have memorized %1.}
 {
-#if {"$playMemorize" == "true"}
+#if {"$play_memorize" == "true"}
 {
-#variable {playMemorize} {false};
+#variable {play_memorize} {false};
 synth_play $memorized;
-#delay {1} {#variable {playMemorize} {true}}
+#delay {1} {#variable {play_memorize} {true}}
 }
 }
 {9}
@@ -128,11 +151,17 @@ play god_coins
 }
 {9}
 
-#action {^You get %d {gold|silver} coins from the corpse of %3.}
+#action {^You get a {gold|silver} coin%3}
 {
 play coins
 }
-{9}
+{8}
+
+#action {^You get %d {gold|silver} coin%3.}
+{
+play coins
+}
+{8}
 
 #action {^You have deposited %d {gold|silver} pieces.}
 {
@@ -176,11 +205,11 @@ play miss
 }
 {9}
 
-#action {%1{r|'s} {bite|chop|claw|kick|pierce|magic missile|pound|punch|shocking grasp|slash|slice|thrust|thwack|whip} {$damages} %5}
+#action {%1{r|'s} {bite|chop|claw|cleave|kick|pierce|magic missile|pound|punch|shocking grasp|slash|slice|thrust|thwack|whip} {$damages} %5}
 {
 #script {weaponSound} {echo "%3" | tr " " "_"};
 #variable {weaponSound} {${weaponSound[1]}};
-#if {"$weaponSound" == "slice"}
+#if {"$weaponSound" == "{cleave|slice}"}
 {
 play slash
 };
@@ -373,4 +402,7 @@ play death-fall
 }
 {9}
 #variable {damages} {decimates|  \*\*  DESTROYS  \*\*  |hits|grazes|injures|Maims|massacres|mauls| MUTILATES |scratches}
-#variable {playMemorize} {true}
+#variable {play_drop} {true}
+#variable {play_get} {true}
+#variable {play_put} {true}
+#variable {play_memorize} {true}

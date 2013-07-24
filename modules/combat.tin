@@ -8,7 +8,7 @@ sleep
 
 #action {%1 DISARMS you and sends your weapon flying!$}
 {
-play disarm;
+play drop;
 get $weapon;
 wield $weapon
 }

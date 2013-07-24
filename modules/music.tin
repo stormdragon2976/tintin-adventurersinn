@@ -179,5 +179,5 @@
 }
 }
 
-#VARIABLE         {musicChannel}  {music}
+#VARIABLE         {musicChannel}  {cooc}
 #variable {musicChannelInstruments} {"bagpipes" "guitar" "armonica" "beer bottle organ" "floppy drives" "timpani drums" "steel guitar" "vuvuzela" "cello" "didgeridoo" "harp" "penny whistle" "keytar" "theremin" "piccolo" "harpsichord" "fiddle" "uilleann pipes" "banjo" "piano" "accordion" "washboard" "triangle" "kazoo" "glockenspiel" "lyre" "lute" "violin" "koto" "saw" "cimbalo"}
