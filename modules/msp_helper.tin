@@ -1,3 +1,9 @@
+#action {^A warm feeling fills your entire body!}
+{
+play full_heal
+}
+{9}
+
 #action {^You grip returns to normal.}
 {
 rev_play iron_grip
@@ -162,7 +168,7 @@ play shield_spell
 }
 {9}
 
-#action {^You {drop|get|put} %*}
+#action {^You {drop|get|healed|put} %*}
 {
 #if {"$play_%1" == "true"}
 {
@@ -458,5 +464,6 @@ play death-fall
 #variable {damages} {decimates|  \*\*  DESTROYS  \*\*  |hits|grazes|injures|Maims|massacres|mauls| MUTILATES |scratches}
 #variable {play_drop} {true}
 #variable {play_get} {true}
+#variable {play_healed} {true}
 #variable {play_put} {true}
 #variable {play_memorize} {true}
