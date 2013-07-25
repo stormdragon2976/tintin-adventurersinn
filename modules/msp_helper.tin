@@ -1,3 +1,57 @@
+#action {^You grip returns to normal.}
+{
+rev_play iron_grip
+}
+{9}
+
+#action {^Your hands grip tight.}
+{
+play iron_grip
+}
+{9}
+
+#action {^A bright blue shimmer of energy appears in the air before you.}
+{
+play gate
+}
+{9}
+
+#action {^You feel less armored.}
+{
+rev_play armor
+}
+{9}
+
+#action {^Your skin feels soft again.}
+{
+rev_play stone_skin
+}
+{9}
+
+#action {^Your skin turns to stone.}
+{
+play stone_skin
+}
+{9}
+
+#action {^Your magical shield shimmers then fades away.}
+{
+rev_play shield_spell
+}
+{9}
+
+#action {^You feel yourself slow down.}
+{
+rev_play haste
+}
+{9}
+
+#action {^You feel yourself moving more quickly.}
+{
+play haste
+}
+{9}
+
 #action {%1 {sheaths|sheath} %*.}
 {
 play sheath_blade
@@ -104,7 +158,7 @@ play draw_blade
 
 #action {^You are surrounded by a force shield.}
 {
-play shield
+play shield_spell
 }
 {9}
 
@@ -205,9 +259,9 @@ play miss
 }
 {9}
 
-#action {%1{r|'s} {bite|chop|claw|cleave|kick|pierce|magic missile|pound|punch|shocking grasp|slash|slice|thrust|thwack|whip} {$damages} %5}
+#action {%1{r|'s} {\|\*\*\|   Ball of  A C I D   \|\*\*\||bite|chilling touch|chop|claw|cleave|kick|lightning bolt|pierce|magic missile|pound|punch|shocking grasp|slash|slice|Sphere of Cold|Sphere of Fire|Sphere of Lightning|thrust|thwack|whip} {$damages} %5}
 {
-#script {weaponSound} {echo "%3" | tr " " "_"};
+#script {weaponSound} {echo "%3" | tr ' |*' '_'};
 #variable {weaponSound} {${weaponSound[1]}};
 #if {"$weaponSound" == "{cleave|slice}"}
 {
@@ -227,7 +281,7 @@ play pound
 };
 #else
 {
-play %3
+play $weaponSound
 }
 }
 {9}

@@ -13,23 +13,28 @@
 
 #ALIAS {pan_play %S}
 {
-#if {!&{leftChannel} || "$leftChannel" == ""}
-{
-#math {leftChannel} {1d4 + 1}
-};
-#if {!&{rightChannel} || "$rightChannel" == ""}
-{
-#math {rightChannel} {1d4 + 1}
-};
-#system {play -qV0 "$(shuf -n 1 -e sounds/%1*ogg)" remix v0.$leftChannel v0.$rightChannel gain $volume &> /dev/null &}
-#unvariable {leftChannel};
-#unvariable {rightChannel}
+	#if {!&{leftChannel} || "$leftChannel" == ""}
+	{
+		#math {leftChannel} {1d4 + 1}
+	};
+	#if {!&{rightChannel} || "$rightChannel" == ""}
+	{
+		#math {rightChannel} {1d4 + 1}
+	};
+	#system {play -qV0 "$(shuf -n 1 -e sounds/%1*ogg)" remix v0.$leftChannel v0.$rightChannel gain $volume &> /dev/null &}#unvariable {leftChannel};
+	#unvariable {rightChannel}
 }
 {9}
 
 #ALIAS {play %S}
 {
 	#system {play -qV0 "$(shuf -n 1 -e sounds/%1*ogg)" gain $volume &> /dev/null &}
+}
+{9}
+
+#ALIAS {rev_play %S}
+{
+	#system {play -qV0 "$(shuf -n 1 -e sounds/%1*ogg)" reverse gain $volume &> /dev/null &}
 }
 {9}
 
