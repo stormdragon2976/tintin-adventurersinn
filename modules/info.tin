@@ -1,3 +1,32 @@
+#action {%1 {has a bruise or two|has a few scratches|has some open cuts and bruises|has quite a few battle wounds|in Excellent Fighting condition|looks Pretty BAD|is Bleeding ALL Over|is in Awful Condition|is just about DEAD}{.|!}}
+{
+#if {"$grepping" != "false"}
+{
+#echo {%0};
+#variable {grepping} {false};
+#delay {0.2} {#ungag {%%0}}
+}
+}
+{9}
+
+#alias {^{cond|condi|condit|conditi|conditio|condition} %2}
+{
+#variable {grepping} {condition};
+#gag {%%0};
+look %2
+}
+{9}
+
+#action {^You do not see that here.}
+{
+#if {"$grepping" == "condition"}
+{
+#ungag {%%0};
+#variable {grepping} {false}
+}
+}
+{9}
+
 #alias {^ex{p|per|pere|peren|perenc|perence}$}
 {
 #echo {^You have $oldExp experience.}
@@ -79,6 +108,11 @@ synth_play $eventSound;
 
 #action {^You %1 worship%2}
 {
+#if {"$grepping" == "condition"}
+{
+#variable {grepping} {false};
+#ungag {%%0};
+};
 #if {"$grepping" == "god"}
 {
 #echo {%0}
@@ -124,7 +158,7 @@ score
 }
 {9}
 
-#alias {^report$}
+#alias {^{repo|repor|report}$}
 {
 #variable {grepping} {report};
 #send {report}

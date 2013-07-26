@@ -1,3 +1,20 @@
+#action {^Ok. %1 healed a few of your wounds.}
+{
+#if {"$play_healed" == "true"}
+{
+#variable {play_healed} {false};
+play healed;
+#delay {0.3} {#variable {play_healed} {true}}
+}
+}
+{9}
+
+#action {^You grab %1 and balance it in your hand.}
+{
+play draw_mace
+}
+{9}
+
 #action {^A warm feeling fills your entire body!}
 {
 play full_heal
@@ -168,6 +185,17 @@ play shield_spell
 }
 {9}
 
+#action {^A warm feeling fills your body.}
+{
+#if {"$play_healed" == "true"}
+{
+#variable {play_healed} {false};
+play healed;
+#delay {0.3} {#variable {play_healed} {true}}
+}
+}
+{9}
+
 #action {^You {drop|get|healed|put} %*}
 {
 #if {"$play_%1" == "true"}
@@ -243,7 +271,12 @@ play join_battle
 
 #action {%1 {blocks|block} %3 attack with {a|your} shield.$}
 {
-play shield_block
+#if {"$play_shield" == "true"}
+{
+#variable {play_shield} {false};
+play shield_block;
+#delay {0.3} {#variable {play_shield} {true}}
+}
 }
 {9}
 
@@ -255,7 +288,12 @@ play hungry
 
 #action {%1 {parry|parries} %2 attack.$}
 {
-play parry
+#if {"$play_parry" == "true"}
+{
+#variable {play_parry} {false};
+play parry;
+#delay {0.3} {#variable {play_parry} {true}}
+}
 }
 {9}
 
@@ -265,7 +303,7 @@ play miss
 }
 {9}
 
-#action {%1{r|'s} {\|\*\*\|   Ball of  A C I D   \|\*\*\||bite|chilling touch|chop|claw|cleave|kick|lightning bolt|pierce|magic missile|pound|punch|shocking grasp|slash|slice|Sphere of Cold|Sphere of Fire|Sphere of Lightning|thrust|thwack|whip} {$damages} %5}
+#action {%1{r|'s} {\|\*\*\|   Ball of  A C I D   \|\*\*\||bite|chilling touch|chop|claw|cleave|kick|lightning bolt|pierce|magic missile|pound|punch|shocking grasp|slash|slice|Sphere of Cold|Sphere of Fire|Sphere of Lightning|thrust|thwack|whip|wrath} {$damages} %5}
 {
 #script {weaponSound} {echo "%3" | tr ' |*' '_'};
 #variable {weaponSound} {${weaponSound[1]}};
@@ -465,5 +503,7 @@ play death-fall
 #variable {play_drop} {true}
 #variable {play_get} {true}
 #variable {play_healed} {true}
+#variable {play_parry} {true}
 #variable {play_put} {true}
+#variable {play_shield} {true}
 #variable {play_memorize} {true}

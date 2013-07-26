@@ -40,7 +40,12 @@ synth_play $hpSevere
 {8}
 
 #ACTION {%1 condition:  %2{.|!}$}
+{#if {"$grepping" != "false"}
 {
+#echo {%0};
+#variable {grepping} {false};
+#delay {0.2} {#ungag {%%0}}
+};
 #if {"%2" == "Excellent fighting condition."}
 	{
 		#variable {enemyConditionTone} {600}
