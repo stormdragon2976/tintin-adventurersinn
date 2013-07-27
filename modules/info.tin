@@ -108,6 +108,10 @@ synth_play $eventSound;
 
 #action {^You %1 worship%2}
 {
+#if {"%1" == "bow down and begin to"}
+{
+#variable {position} {resting}
+};
 #if {"$grepping" == "condition"}
 {
 #variable {grepping} {false};

@@ -22,6 +22,12 @@ wield $weapon
  
 #action {^You are caught off guard!!}
 {
-ready}
+#if {"$onGuard" == "false"}
+{
+ready;
+#variable {onGuard} {true};
+#delay {2} {#variable {onGuard} {false}}
+}
+}
 {9}
-
+#variable {onGuard} {false}

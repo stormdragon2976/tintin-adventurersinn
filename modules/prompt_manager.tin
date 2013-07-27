@@ -1,7 +1,51 @@
+#action {^Huh?  I'm sorry, I didn't understand that?}
+{
+#if {"$ping" == "false"}
+{
+#echo {%0}
+};
+#else
+{
+#delay {0.2} {#variable {ping} {false}}
+}
+}
+{9}
+
+#ticker {pinger}
+{
+#if {"$position" == "resting"}
+{
+#script {shuf -n 1 -e "ping" "pingg" "pinggg"};
+#variable {ping} {true}
+}
+}
+{15}
+
+#action {^You {are already standing|stop worshipping and stand up|wake and stand up|stand up}.}
+{
+#variable {position} {standing}
+}
+{9}
+
+#action {^You {go to sleep|rest|sit down}.}
+{
+#variable {position} {resting}
+}
+{9}
+
 #ACTION {^< Hp: %S  Ftg: %2 >}
 {
 #CONFIG {REPEAT ENTER} {ON};
-#if {"$oldCondition" != "%0"}
+#if {"%1" != "Superb"}
+{
+#variable {fullRegenAlert} {false}
+};
+#if {"%1" == "Superb" && "%2" == "Perfect" && "$fullRegenAlert" != "true"}
+{
+#variable {fullRegenAlert} {true};
+#if {"$position" != "standing"} {play regen_complete}
+};
+#if {"$oldCondition" != "%0" && "$ping" != "true"}
 {
 #echo {%0};
 #variable {oldCondition} {%0};
@@ -102,5 +146,8 @@ synth_play $hpSevere
 }
 {9}
 #gag {^< Hp: %S  Ftg: %2 >}
+#gag {^Huh?  I'm sorry, I didn't understand that?}
+#variable {fullRegenAlert} {true}
 #variable {oldCondition}
 #variable {oldHp} {}
+#variable {ping} {false}
