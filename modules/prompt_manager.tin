@@ -21,7 +21,7 @@
 }
 {15}
 
-#action {^You {are already standing|stop worshipping and stand up|wake and stand up|stand up}.}
+#action {^You {are already standing|wake and stand up|stand up}.}
 {
 #variable {position} {standing}
 }

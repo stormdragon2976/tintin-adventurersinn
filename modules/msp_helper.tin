@@ -1,3 +1,27 @@
+#action {^You hang %1 on your hip.}
+{
+rev_play draw_mace
+}
+{9}
+
+#action {^*Click*}
+{
+play lock
+}
+{9}
+
+#action {%1 gets a wild look in {her|his|its} eyes.$}
+{
+play berserk
+}
+{9}
+
+#action {^You focus and ready yourself.}
+{
+play focus
+}
+{9}
+
 #action {^Ok. %1 healed a few of your wounds.}
 {
 #if {"$play_healed" == "true"}
@@ -257,7 +281,13 @@ play deposit
 }
 {9}
 
-#action {^You uncoil a whip and loosen some slack from it.}
+#action {^You coil up%1.}
+{
+rev_play draw_whip
+}
+{9}
+
+#action {^You uncoil %1 and loosen some slack from it.}
 {
 play draw_whip
 }
@@ -303,11 +333,23 @@ play miss
 }
 {9}
 
-#action {%1{r|'s} {\|\*\*\|   Ball of  A C I D   \|\*\*\||bite|chilling touch|chop|claw|cleave|freezing bite|kick|lightning bolt|pierce|magic missile|pound|punch|shocking grasp|slash|slice|Sphere of Cold|Sphere of Fire|Sphere of Lightning|thrust|thwack|whip|wrath} {$damages} %5}
+#action {%1{r|'s} {\|\*\*\|   Ball of  A C I D   \|\*\*\||bearhug|bite|blast|chill|chilling touch|chomp|chop|claw|cleave|crush|freezing bite|kick|lightning bolt|pierce|magic missile|pound|punch|shocking grasp|slash|slice|Sphere of Cold|Sphere of Fire|Sphere of Lightning|thrust|thwack|whip|wrath} {$damages} %5}
 {
 #script {weaponSound} {echo "%3" | tr ' |*' '_'};
 #variable {weaponSound} {${weaponSound[1]}};
-#if {"$weaponSound" == "{cleave|slice}"}
+#if {"$weaponSound" == "blast"}
+{
+play wrath
+};
+#elseif {"$weaponSound" == "chill"}
+{
+play chill_attack
+};
+#elseif {"$weaponSound" == "chomp"}
+{
+play bite
+};
+#elseif {"$weaponSound" == "{cleave|slice}"}
 {
 play slash
 };

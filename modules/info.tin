@@ -112,6 +112,10 @@ synth_play $eventSound;
 {
 #variable {position} {resting}
 };
+#if {"%1" == "stop"}
+{
+#variable {position} {standing}
+};
 #if {"$grepping" == "condition"}
 {
 #variable {grepping} {false};
