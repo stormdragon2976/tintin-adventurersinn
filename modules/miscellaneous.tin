@@ -1,3 +1,13 @@
+#action {^ %sA sprig of green herbs with yellow dots on them are rooted here.}
+{
+#if {"$currentMv" != "Perfect"}
+{
+get herb;
+eat herb
+}
+}
+{9}
+
 #alias {^cl{ear|s}$}
 {
 #60 {#echo {}}

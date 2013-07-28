@@ -35,6 +35,8 @@
 
 #ACTION {^< Hp: %S  Ftg: %2 >}
 {
+#variable {currentHp} {%1};
+#variable {currentMv} {%2};
 #CONFIG {REPEAT ENTER} {ON};
 #if {"%1" != "Superb"}
 {
@@ -148,6 +150,8 @@ synth_play $hpSevere
 #gag {^< Hp: %S  Ftg: %2 >}
 #gag {^Huh?  I'm sorry, I didn't understand that?}
 #variable {fullRegenAlert} {true}
+#variable {currentHp} {}
+#variable {currentMv} {}
 #variable {oldCondition}
 #variable {oldHp} {}
 #variable {ping} {false}

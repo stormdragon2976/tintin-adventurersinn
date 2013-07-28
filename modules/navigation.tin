@@ -41,7 +41,7 @@
 	scan down
 }
 
-#MACRO {\eU}
+#MACRO {\eO}
 {
 	scan up
 }
