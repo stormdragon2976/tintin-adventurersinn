@@ -163,7 +163,12 @@ play rain
 
 #action {^You begin to train...$}
 {
-play levelup
+#if {"$play_levelup" == "true"}
+{
+#variable {play_levelup} {false};
+play levelup;
+#delay {2.07} {#variable {play_levelup} {true}}
+}
 }
 {9}
 
@@ -545,6 +550,7 @@ play death-fall
 #variable {play_drop} {true}
 #variable {play_get} {true}
 #variable {play_healed} {true}
+#variable {play_levelup} {true}
 #variable {play_parry} {true}
 #variable {play_put} {true}
 #variable {play_shield} {true}
