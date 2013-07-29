@@ -1,3 +1,20 @@
+#alias {^{d|do|dow|down|e|ea|eas|east|n|no|nor|nort|north|s|sou|sout|south|u|up|w|we|wes|west}$}
+{
+#variable {play_footstep} {true};
+#send {%0}
+}
+{9}
+
+#action {^Exits: %*}
+{
+#if {"$play_footstep" == "true"}
+{
+play footstep
+};
+#variable {play_footstep} {false}
+}
+{9}
+ 
 #action {^You hang %1 on your hip.}
 {
 rev_play draw_mace
@@ -548,6 +565,7 @@ play death-fall
 {9}
 #variable {damages} {decimates|  \*\*  DESTROYS  \*\*  |hits|grazes|injures|Maims|massacres|mauls| MUTILATES |scratches}
 #variable {play_drop} {true}
+#variable {play_footstep} {false}
 #variable {play_get} {true}
 #variable {play_healed} {true}
 #variable {play_levelup} {true}
