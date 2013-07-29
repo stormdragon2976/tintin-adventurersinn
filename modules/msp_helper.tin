@@ -1,6 +1,6 @@
-#action {%1 {close|open}{s a|s an|s the| a| an| the}%3.$}
+#action {%1 {close|open}{s a|s an|s the| a| an| the} {door|gate}{s\.|\.}$}
 {
-play %2
+play %2_%4
 }
 {9}
 
