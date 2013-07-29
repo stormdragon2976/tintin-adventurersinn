@@ -33,7 +33,8 @@ sleep
 {
 #echo {%0}
 };
-#unvariable {lastCommand}
+#unvariable {lastCommand};
+#variable {play_footstep} {false}
 }
 {9}
 

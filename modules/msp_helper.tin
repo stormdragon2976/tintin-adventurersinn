@@ -512,6 +512,7 @@ play need_to_worship
 
 #action {^You cannot go that direction.}
 {
+#variable {play_footstep} {false};
 play bump
 }
 {9}
@@ -578,4 +579,5 @@ play death-fall
 #variable {play_parry} {true}
 #variable {play_put} {true}
 #variable {play_shield} {true}
+#variable {play_sleep} {true}
 #variable {play_memorize} {true}

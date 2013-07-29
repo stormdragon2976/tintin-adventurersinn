@@ -23,13 +23,20 @@
 
 #action {^You {are already standing|wake and stand up|stand up}.}
 {
+#variable {play_footstep} {false};
 #variable {position} {standing}
 }
 {9}
 
 #action {^You {go to sleep|rest|sit down}.}
 {
-#variable {position} {resting}
+#variable {position} {resting};
+#if {"%1" == "go to sleep" && "$play_sleep" == "true"}
+{
+#variable {play_sleep} {false};
+play sleep;
+#delay {03.39} {#variable {play_sleep} {true}}
+}
 }
 {9}
 
