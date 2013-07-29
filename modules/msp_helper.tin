@@ -1,3 +1,9 @@
+#action {%1 {close|open}{s a|s an|s the| a| an| the}%3.$}
+{
+play %2
+}
+{9}
+
 #alias {^{d|do|dow|down|e|ea|eas|east|n|no|nor|nort|north|s|sou|sout|south|u|up|w|we|wes|west}$}
 {
 #variable {play_footstep} {true};
