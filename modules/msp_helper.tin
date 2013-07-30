@@ -1,3 +1,35 @@
+#action {%1 has fled!$}
+{
+#if {"$fleeDirection" != "null"}
+{
+#if {"$fleeDirection" == "{east|west}"}
+{
+play flee_$fleeDirection
+};
+#else
+{
+play flee_normal
+}
+}
+}
+{9}
+
+#action {%1 leaves %S.$}
+{
+#variable {fleeDirection} {%2};
+#delay {0.3} {#variable {fleeDirection} {null}}
+}
+{9}
+
+ #action {%1 {circle|circles} around%*}
+{
+#if {"%0" != "You {are too tired to circle your opponent|aren't fighting anyone to circle around|learn from your mistakes, and your circle skill improves}."}
+{
+play circle
+}
+}
+{9}
+
 #action {%1 {close|open}{s a|s an|s the| a| an| the} {door|gate}{s\.|\.}$}
 {
 play %2_%4
@@ -571,6 +603,7 @@ play death-fall
 }
 {9}
 #variable {damages} {decimates|  \*\*  DESTROYS  \*\*  |hits|grazes|injures|Maims|massacres|mauls| MUTILATES |scratches}
+#variable {fleeDirection} {null}
 #variable {play_drop} {true}
 #variable {play_footstep} {false}
 #variable {play_get} {true}
