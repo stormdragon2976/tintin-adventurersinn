@@ -1,53 +1,3 @@
-#macro {\e-}
-{
-channel_selector -
-}
-
-#macro {\e=}
-{
-channel_selector +
-}
-
-#MACRO {\e!}
-{
-channel_selector 0
-}
-
-#MACRO {\e@}
-{
-channel_selector 1
-}
-
-#MACRO {\e#}
-{
-channel_selector 2
-}
-
-#MACRO {\e$}
-{
-channel_selector 3
-}
-
-#MACRO {\e%}
-{
-channel_selector 4
-}
-
-#MACRO {\e^}
-{
-channel_selector 5
-}
-
-#MACRO {\e&}
-{
-channel_selector 6
-}
-
-#MACRO {\e*}
-{
-channel_selector 7
-}
- 
 #ACTION {%1-EBG31@ %2}
 {
 	#gag {%0};
@@ -136,6 +86,18 @@ channel_selector 7
 }
 {9}
 
+#ACTION {^You learn from your mistakes, and %1.}
+{
+	synth_play $eventSound;
+	#list {event} {insert} {1} {%0};
+	#list {event} {size} {i};
+	#if {$i >= 11}
+	{
+		#list {event} {delete} {11}
+	}
+}
+{9}
+
 #ACTION {^You {are now|have become better at}%1}
 {
 	synth_play $eventSound;
@@ -148,25 +110,64 @@ channel_selector 7
 }
 {9}
 
-#ALIAS {^crypt%S %2}
+#ALIAS {^channel_selector {\-|\+}$}
 {
-	#script {encryptedMessage} {echo "%2" | rev | scripts/msgcrypt.sh};
-	#variable {encryptedMessage} {${encryptedMessage[1]}};
-	%1 -EBG31@  $encryptedMessage
-}
-{9}
-
-#ALIAS {display_channel %S %d}
-{
-	#list {%1} {size} {i};
-	#if {%2 <= $i}
+	#if {$channelBufferIndex >= 8 && "%1" == "+"}
 	{
-		#echo {${%1[%2]}}
-	}
+		#variable {channelBufferIndex} {8}
+	};
+	#elseif {$channelBufferIndex <= 0 && "%1" == "-"}
+	{
+		#variable {channelBufferIndex} {0}
+	};
+	#else
+	{
+		#math {channelBufferIndex} {$channelBufferIndex %1 1}
+	};
+	#switch {$channelBufferIndex}
+	{
+		#case {0}
+		{
+			#variable {channelName} {all}
+		};
+		#case {1}
+		{
+			#variable {channelName} {chat}
+		};
+		#case {2}
+		{
+			#variable {channelName} {clantell}
+		};
+		#case {3}
+		{
+			#variable {channelName} {event}
+		};
+		#case {4}
+		{
+			#variable {channelName} {grouptell}
+		};
+		#case {5}
+		{
+			#variable {channelName} {music}
+		};
+		#case {6}
+		{
+			#variable {channelName} {newbie}
+		};
+		#case {7}
+		{
+			#variable {channelName} {say}
+		};
+		#case {8}
+		{
+			#variable {channelName} {tell}
+		}
+	};
+	#showme {Channel buffer set to $channelName}
 }
-{9}
+{8}
 
-#alias {^channel_selector %d$}
+#ALIAS {^channel_selector %d$}
 {
 	#switch {%1}
 	{
@@ -206,13 +207,68 @@ channel_selector 7
 		{
 			#variable {channelName} {tell}
 		};
-#default {#showme {That channel does not exist yet.};
-#variable {channelName} {all}
-}
+		#default
+		{
+			#showme {That channel does not exist yet.};
+			#variable {channelName} {all}
+		}
 	};
-#showme {Channel buffer set to $channelName}
+	#showme {Channel buffer set to $channelName}
 }
 {9}
+
+#ALIAS {^crypt%S %2}
+{
+	#script {encryptedMessage} {echo "%2" | rev | scripts/msgcrypt.sh};
+	#variable {encryptedMessage} {${encryptedMessage[1]}};
+	%1 -EBG31@  $encryptedMessage
+}
+{9}
+
+#ALIAS {display_channel %S %d}
+{
+	#list {%1} {size} {i};
+	#if {%2 <= $i}
+	{
+		#echo {${%1[%2]}}
+	}
+}
+{9}
+
+#MACRO {\e!}
+{
+	channel_selector 0
+}
+
+#MACRO {\e#}
+{
+	channel_selector 2
+}
+
+#MACRO {\e$}
+{
+	channel_selector 3
+}
+
+#MACRO {\e%}
+{
+	channel_selector 4
+}
+
+#MACRO {\e&}
+{
+	channel_selector 6
+}
+
+#MACRO {\e*}
+{
+	channel_selector 7
+}
+
+#MACRO {\e-}
+{
+	channel_selector -
+}
 
 #MACRO {\e0}
 {
@@ -264,62 +320,20 @@ channel_selector 7
 	display_channel $channelName 9
 }
 
-#alias {^channel_selector {\-|\+}$}
+#MACRO {\e=}
 {
-	#if {$channelBufferIndex >= 8 && "%1" == "+"}
-	{
-		#variable {channelBufferIndex} {8}
-	};
-#elseif {$channelBufferIndex <= 0 && "%1" == "-"}
-	{
-		#variable {channelBufferIndex} {0}
-	};
-	#else
-	{
-		#math {channelBufferIndex} {$channelBufferIndex %1 1}
-	};
-	#switch {$channelBufferIndex}
-	{
-		#case {0}
-		{
-			#variable {channelName} {all}
-		};
-		#case {1}
-		{
-			#variable {channelName} {chat}
-		};
-		#case {2}
-		{
-			#variable {channelName} {clantell}
-		};
-		#case {3}
-		{
-			#variable {channelName} {event}
-		};
-		#case {4}
-		{
-			#variable {channelName} {grouptell}
-		};
-		#case {5}
-		{
-			#variable {channelName} {music}
-		};
-		#case {6}
-		{
-			#variable {channelName} {newbie}
-		};
-		#case {7}
-		{
-			#variable {channelName} {say}
-		};
-		#case {8}
-		{
-			#variable {channelName} {tell}
-		}
-	};
-	#showme {Channel buffer set to $channelName}
+	channel_selector +
 }
-{8}
+
+#MACRO {\e@}
+{
+	channel_selector 1
+}
+
+#MACRO {\e^}
+{
+	channel_selector 5
+}
 
 #VARIABLE         {all}  {}
 #VARIABLE         {channelBufferIndex}  {0}

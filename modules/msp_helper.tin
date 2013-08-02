@@ -1,3 +1,39 @@
+#action {^But you aren't fighting anyone!}
+{
+play error
+}
+{9}
+
+#action {^The pink aura around you fades away.}
+{
+rev_play faerie_fire
+}
+{9}
+
+#action {^You are already {doing the best you can|resting|sitting down|sleeping}{\.|!}}
+{
+play error
+}
+{9}
+
+#action {^They aren't here.}
+{
+play error
+}
+{9}
+
+#action {^You fall flat on your face!}
+{
+play fall
+}
+{9}
+
+#action {%1 {slam|slams} into %2 and {send|sends} {her|him|it|you} flying!$}
+{
+play bash
+}
+{9}
+
 #action {%1 has fled!$}
 {
 #if {"$fleeDirection" != "null"}
@@ -79,12 +115,7 @@ play focus
 
 #action {^Ok. %1 healed a few of your wounds.}
 {
-#if {"$play_healed" == "true"}
-{
-#variable {play_healed} {false};
-play healed;
-#delay {0.3} {#variable {play_healed} {true}}
-}
+seq_play healed
 }
 {9}
 
@@ -215,15 +246,9 @@ play rain
 }
 {9}
 
-
 #action {^You begin to train...$}
 {
-#if {"$play_levelup" == "true"}
-{
-#variable {play_levelup} {false};
-play levelup;
-#delay {2.07} {#variable {play_levelup} {true}}
-}
+seq_play levelup
 }
 {9}
 
@@ -271,22 +296,15 @@ play shield_spell
 
 #action {^A warm feeling fills your body.}
 {
-#if {"$play_healed" == "true"}
-{
-#variable {play_healed} {false};
-play healed;
-#delay {0.3} {#variable {play_healed} {true}}
-}
+seq_play healed
 }
 {9}
 
 #action {^You {drop|get|healed|put} %*}
 {
-#if {"$play_%1" == "true"}
+#if {"%2" != "a little madder."}
 {
-#variable {play_%1} {false};
-play %1;
-#delay {0.3} {#variable {play_%1} {true}}
+seq_play %1;
 }
 }
 {9}
@@ -361,12 +379,7 @@ play join_battle
 
 #action {%1 {blocks|block} %3 attack with {a|your} shield.$}
 {
-#if {"$play_shield" == "true"}
-{
-#variable {play_shield} {false};
-play shield_block;
-#delay {0.3} {#variable {play_shield} {true}}
-}
+seq_play shield_block
 }
 {9}
 
@@ -378,12 +391,7 @@ play hungry
 
 #action {%1 {parry|parries} %2 attack.$}
 {
-#if {"$play_parry" == "true"}
-{
-#variable {play_parry} {false};
-play parry;
-#delay {0.3} {#variable {play_parry} {true}}
-}
+seq_play parry
 }
 {9}
 
@@ -604,13 +612,5 @@ play death-fall
 {9}
 #variable {damages} {decimates|  \*\*  DESTROYS  \*\*  |hits|grazes|injures|Maims|massacres|mauls| MUTILATES |scratches}
 #variable {fleeDirection} {null}
-#variable {play_drop} {true}
 #variable {play_footstep} {false}
-#variable {play_get} {true}
-#variable {play_healed} {true}
-#variable {play_levelup} {true}
-#variable {play_parry} {true}
-#variable {play_put} {true}
-#variable {play_shield} {true}
-#variable {play_sleep} {true}
 #variable {play_memorize} {true}

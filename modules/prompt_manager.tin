@@ -2,6 +2,7 @@
 {
 #if {"$ping" == "false"}
 {
+play error;
 #echo {%0}
 };
 #else
@@ -23,6 +24,10 @@
 
 #action {^You {are already standing|wake and stand up|stand up}.}
 {
+#if {"%1" == "are already standing"}
+{
+play error
+};
 #variable {play_footstep} {false};
 #variable {position} {standing}
 }

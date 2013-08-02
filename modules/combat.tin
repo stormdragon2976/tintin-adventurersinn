@@ -1,3 +1,21 @@
+#alias {{bas|bash}}
+{
+#script {echo -n "#send ";shuf -n 1 -e "bas" "bash"}
+}
+{9}
+
+#alias {^{kic|kick}$}
+{
+#script {echo -n "#send ";shuf -n 1 -e "kic" "kick"}
+}
+{9}
+
+#alias {^{cir|circ|circl|circle}$}
+{
+#script {echo -n "#send ";$shuf -n 1 -e "cir" "circ" "circl" "circle"}
+}
+{9}
+
 #action {^You are too alert to try and sleep right now.}
 {
 #gag %0;
