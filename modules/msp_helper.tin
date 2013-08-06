@@ -1,3 +1,35 @@
+#action {^You are as ready and alert as you can be.}
+{
+play error;
+#variable {toggleWeapon} {relax}
+}
+{9}
+
+#action {^You are already relaxed.}
+{
+play error;
+#variable {toggleWeapon} {ready}
+}
+{9}
+
+#action {^No way!  You are too busy fighting something!}
+{
+play error
+}
+{9}
+
+#action {^You are Blinded!}
+{
+play blindness
+}
+{9}
+
+#action {^You can see again.}
+{
+rev_play blindness
+}
+{9}
+
 #action {^But you aren't fighting anyone!}
 {
 play error
@@ -72,6 +104,12 @@ play %2_%4
 }
 {9}
 
+#action {^You are exhausted and cannot move.}
+{
+#variable {play_footstep} {false}
+}
+{9}
+
 #alias {^{d|do|dow|down|e|ea|eas|east|n|no|nor|nort|north|s|sou|sout|south|u|up|w|we|wes|west}$}
 {
 #variable {play_footstep} {true};
@@ -89,9 +127,13 @@ play footstep
 }
 {9}
  
-#action {^You hang %1 on your hip.}
+#action {%1 {hang|hangs} %1 on {her|his|its|your} hip.}
 {
-rev_play draw_mace
+rev_play draw_mace;
+#if {"%1" == "You"}
+{
+#variable {toggleWeapon} {ready}
+}
 }
 {9}
 
@@ -109,7 +151,8 @@ play berserk
 
 #action {^You focus and ready yourself.}
 {
-play focus
+play focus;
+#variable {toggleWeapon} {relax}
 }
 {9}
 
@@ -119,9 +162,13 @@ seq_play healed
 }
 {9}
 
-#action {^You grab %1 and balance it in your hand.}
+#action {%1 {grab|grebs} %2 and {balance|balances} it in {her|his|its|your} hand.}
 {
-play draw_mace
+play draw_mace;
+#if {"%1" == "You"}
+{
+#variable {toggleWeapon} {relax}
+}
 }
 {9}
 
@@ -187,7 +234,8 @@ play haste
 
 #action {%1 {sheaths|sheath} %*.}
 {
-play sheath_blade
+play sheath_blade;
+#variable {toggleWeapon} {ready}
 }
 {9}
 
@@ -284,7 +332,11 @@ play coins
 
 #action {%1 {draws|draw} %2 from its sheath.}
 {
-play draw_blade
+play draw_blade;
+#if {"%1" == "You"}
+{
+#variable {toggleWeapon} {relax}
+}
 }
 {9}
 
@@ -326,9 +378,23 @@ play armor
 }
 {9}
 
-#action {%1 {gains|gain} a firm grip of %3 and levels it before {her|him|it|your}self.}
+#action {%1 {raise|raises} a %3 and {lean|leans} on it for support.}
 {
-play draw_polearm
+rev_play draw_polearm;
+#if {"%1" == "You"}
+{
+#variable {toggleWeapon} {ready}
+}
+}
+{9}
+
+#action {%1 {gains|take} a firm {grasp|grip} of %4 and {level|levels} it {before herself|before himself|before itself|in front of you}.}
+{
+play draw_polearm;
+#if {"%1" == "You"}
+{
+#variable {toggleWeapon} {relax}
+}
 }
 {9}
 
@@ -359,15 +425,23 @@ play deposit
 }
 {9}
 
-#action {^You coil up%1.}
+#action {%1 {coil|coils} up%2.}
 {
-rev_play draw_whip
+rev_play draw_whip;
+#if {"%1" == "You"}
+{
+#variable {toggleWeapon} {ready}
+}
 }
 {9}
 
-#action {^You uncoil %1 and loosen some slack from it.}
+#action {%1 {uncoil|uncoils} %3 and loosen some slack from it.}
 {
-play draw_whip
+play draw_whip;
+#if {"%1" == "You"}
+{
+#variable {toggleWeapon} {relax}
+}
 }
 {9}
 
@@ -440,9 +514,13 @@ play $weaponSound
 }
 {9}
 
-#action {^You grab %1 and angle it in front of you.}
+#action {%1 {grab|grebs} %2 and angle it in front of {her|him|it|you}.}
 {
-play draw_axe
+play draw_axe;
+#if {"%1" == "You"}
+{
+#variable {toggleWeapon} {relax}
+}
 }
 {9}
 

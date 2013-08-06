@@ -36,11 +36,9 @@ play error
 #action {^You {go to sleep|rest|sit down}.}
 {
 #variable {position} {resting};
-#if {"%1" == "go to sleep" && "$play_sleep" == "true"}
+#if {"%1" == "go to sleep"}
 {
-#variable {play_sleep} {false};
-play sleep;
-#delay {03.39} {#variable {play_sleep} {true}}
+seq_play sleep;
 }
 }
 {9}

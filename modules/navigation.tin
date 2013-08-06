@@ -60,7 +60,7 @@
 	#script {shuf -n 1 -e w we wes west}
 }
 
-#MACRO {\ek}
+#MACRO {\eK}
 {
 	scan
 }

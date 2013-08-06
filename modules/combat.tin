@@ -1,3 +1,8 @@
+#macro {\ek}
+{
+$toggleWeapon
+}
+
 #alias {{bas|bash}}
 {
 #script {echo -n "#send ";shuf -n 1 -e "bas" "bash"}
@@ -49,3 +54,4 @@ ready;
 }
 {9}
 #variable {onGuard} {false}
+#variable {toggleWeapon} {ready}
