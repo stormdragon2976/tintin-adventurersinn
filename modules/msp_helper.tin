@@ -475,7 +475,7 @@ play miss
 }
 {9}
 
-#action {%1{r|'s} {\|\*\*\|   Ball of  A C I D   \|\*\*\||bearhug|bite|blast|chill|chilling touch|chomp|chop|claw|cleave|crush|freezing bite|kick|lightning bolt|pierce|magic missile|pound|punch|shocking grasp|slash|slice|Sphere of Cold|Sphere of Fire|Sphere of Lightning|thrust|thwack|whip|wrath} {$damages} %5}
+#action {%1{r|'s} {\|\*\*\|   Ball of  A C I D   \|\*\*\||bearhug|bite|blast|chill|chilling touch|chomp|chop|claw|cleave|crush|freezing bite|kick|lightning bolt|pierce|magic missile|pound|punch|shocking grasp|slash|slice|Sphere of Cold|Sphere of Fire|Sphere of Lightning|thrust|thwack|whip|wrath} {$damages}%*}
 {
 #script {weaponSound} {echo "%3" | tr ' |*' '_'};
 #variable {weaponSound} {${weaponSound[1]}};

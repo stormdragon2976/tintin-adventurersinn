@@ -150,7 +150,7 @@ play error
 }
 {9}
 
-#action {^[ Hit {Enter|Return} to continue ]}
+#action {^{[ Hit|Press} {Enter|Return} to {continue ]|Continue.}}
 {
 #if {"$grepping" != "false"}
 {
