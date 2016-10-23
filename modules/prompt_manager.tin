@@ -1,3 +1,10 @@
+#alias {^PING$}
+{
+#variable {ping} {true};
+ping
+}
+{9}
+
 #action {^Huh?  I'm sorry, I didn't understand that?}
 {
 #if {"$ping" == "false"}
@@ -148,13 +155,15 @@ synth_play $hpSevere
 
 #ALIAS {^hp$}
 {
-	#showme {Health: $currentHitpoints.}
+PING;
+	#echo {Health: $currentHitpoints\.}
 }
 {9}
 
 #ALIAS {^mv$}
 {
-	#showme {Energy: $currentMove.}
+PING;	
+#echo {Energy: $currentMove\.}
 }
 {9}
 #gag {^< Hp: %S  Ftg: %2 >}
